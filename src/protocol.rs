@@ -1,14 +1,14 @@
-/// Sony headphones RFCOMM protocol implementation.
-///
-/// Packet format:
-///   [START=0x3E] [escaped payload] [END=0x3C]
-///
-/// Payload (before escaping):
-///   [data_type:1] [seq:1] [size:4 BE] [command_data:N] [checksum:1]
-///
-/// Sequence numbers alternate 0↔1 (1-bit toggle).
-/// Client ACKs use (1 - device_msg_seq).
-/// Client stores seq from device ACK for next outgoing command.
+//! Sony headphones RFCOMM protocol implementation.
+//!
+//! Packet format:
+//!   `[START=0x3E] [escaped payload] [END=0x3C]`
+//!
+//! Payload (before escaping):
+//!   `[data_type:1] [seq:1] [size:4 BE] [command_data:N] [checksum:1]`
+//!
+//! Sequence numbers alternate 0↔1 (1-bit toggle).
+//! Client ACKs use `1 - device_msg_seq`.
+//! Client stores seq from device ACK for next outgoing command.
 
 pub const START_MARKER: u8 = 0x3E;
 pub const END_MARKER: u8 = 0x3C;

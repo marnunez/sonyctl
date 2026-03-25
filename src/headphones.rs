@@ -111,7 +111,7 @@ impl Headphones {
             }
             self.send_ack(msg.seq)?;
             if !msg.payload.is_empty() {
-                let done = expect.map_or(false, |e| msg.payload[0] == e);
+                let done = expect.is_some_and(|e| msg.payload[0] == e);
                 results.push(msg.payload);
                 if done { break; }
             }
