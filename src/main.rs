@@ -402,12 +402,3 @@ fn main() {
     }
 }
 
-// Debug: check struct sizes
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn check_sizes() {
-        // SockaddrRc should be 10 bytes (u16 + 6 + u8 = 9, but padded?)
-        println!("SockaddrRc size: {}", std::mem::size_of::<super::rfcomm::SockaddrRc>());
-    }
-}
