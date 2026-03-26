@@ -22,6 +22,8 @@ struct SockaddrRc {
     rc_channel: u8,
 }
 
+const _: () = assert!(std::mem::size_of::<SockaddrRc>() == 10);
+
 /// Parse "XX:XX:XX:XX:XX:XX" → 6 bytes in BlueZ reversed order.
 fn parse_mac(addr: &str) -> io::Result<[u8; 6]> {
     let parts: Vec<&str> = addr.split(':').collect();

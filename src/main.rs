@@ -148,13 +148,15 @@ fn main() {
     match &cli.cmd {
         Cmd::Status => {
             let mut hp = open(&cli);
+            let info = hp.get_info().unwrap_or_default();
             let bat = hp.get_battery().unwrap_or(-1);
             let anc = hp.get_anc().ok().flatten();
             let eq = hp.get_eq().ok().flatten();
             let vol = hp.get_volume().ok().flatten();
             let stc = hp.get_speak_to_chat().ok().flatten();
 
-            println!("\n{B}WH-1000XM6{Z} {D}{}{Z}\n", hp.mac);
+            let model = if info.model.is_empty() { "Sony Headphones" } else { &info.model };
+            println!("\n{B}{model}{Z} {D}{}{Z}\n", hp.mac);
 
             println!("  {C}Battery{Z}");
             if bat >= 0 {
